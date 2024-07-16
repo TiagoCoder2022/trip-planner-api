@@ -4,6 +4,10 @@ import com.rocketseat.planner.trip.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 @Service
 public class ActivityService {
     @Autowired
@@ -15,4 +19,9 @@ public class ActivityService {
 
         return new ActivityResponse(newActivity.getId());
     }
+
+    public List<ActivityData> getAllActivitiesFromId(UUID tripId) {
+        return this.repository.findByTripId(tripId).stream().map(activity -> new ActivityData(activity.getId(), activity.getTitle(), activity.getOccursAt())).collect(Collectors.toList());
+    }
+
 }
