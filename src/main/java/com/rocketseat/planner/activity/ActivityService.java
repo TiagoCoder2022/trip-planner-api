@@ -13,7 +13,7 @@ public class ActivityService {
     @Autowired
     private ActivityRepository repository;
     public ActivityResponse registerActivity(ActivityRequestPayload payload, Trip trip) {
-        Activity newActivity = new Activity(payload.title(), payload.occursAt(), trip);
+        Activity newActivity = new Activity(payload.title(), payload.occurs_at(), trip);
 
         this.repository.save(newActivity);
 
